@@ -95,7 +95,7 @@ export default function AdminServicesPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure?')) return;
     await supabase.from('site_services').delete().eq('id', id);
-    setServices(services.filter(s => s.id !== id));
+    setServices(services.filter((s: any) => s.id !== id));
   };
 
   const startEdit = (service: any) => {
@@ -226,7 +226,7 @@ export default function AdminServicesPage() {
         {loading ? (
           <div className="col-span-full flex justify-center py-20"><Loader2 className="w-10 h-10 animate-spin text-azure" /></div>
         ) : (
-          services.map((service, i) => {
+          services.map((service: any, i: number) => {
              const Icon = ICON_MAP[service.icon_name] || Map;
              const theme = THEME_OPTIONS.find(t => t.id === service.color_theme);
              

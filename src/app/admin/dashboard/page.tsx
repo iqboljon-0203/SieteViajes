@@ -42,15 +42,15 @@ export default function AdminDashboard() {
         d.setDate(d.getDate() - i);
         return {
             date: d.toLocaleDateString([], { weekday: 'short' }),
-            count: allLeads?.filter(l => new Date(l.created_at).toDateString() === d.toDateString()).length || 0,
+            count: allLeads?.filter((l: any) => new Date(l.created_at).toDateString() === d.toDateString()).length || 0,
             fullDate: d.toDateString()
         };
     }).reverse();
 
     // Process types for pie
     const types = [
-        { name: 'Booking', value: allLeads?.filter(l => l.type === 'booking').length || 0, color: '#3B82F6' },
-        { name: 'Inquiry', value: allLeads?.filter(l => l.type === 'inquiry' || l.type === 'quote').length || 0, color: '#F59E0B' }
+        { name: 'Booking', value: allLeads?.filter((l: any) => l.type === 'booking').length || 0, color: '#3B82F6' },
+        { name: 'Inquiry', value: allLeads?.filter((l: any) => l.type === 'inquiry' || l.type === 'quote').length || 0, color: '#F59E0B' }
     ];
 
     // Process monthly trajectory (last 12 months)
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
         d.setMonth(d.getMonth() - i);
         return {
             date: d.toLocaleDateString([], { month: 'short' }),
-            count: allLeads?.filter(l => {
+            count: allLeads?.filter((l: any) => {
                 const leadDate = new Date(l.created_at);
                 return leadDate.getMonth() === d.getMonth() && leadDate.getFullYear() === d.getFullYear();
             }).length || 0
@@ -69,8 +69,8 @@ export default function AdminDashboard() {
     setStats({
       totalLeads: leadsCount || 0,
       activeTours: toursCount || 0,
-      newLeads: recentLeads?.filter(l => l.status === 'new').length || 0,
-      conversionRate: leadsCount ? Math.round((recentLeads?.filter(l => l.status === 'contacted').length || 0) / leadsCount * 100) : 0,
+      newLeads: recentLeads?.filter((l: any) => l.status === 'new').length || 0,
+      conversionRate: leadsCount ? Math.round((recentLeads?.filter((l: any) => l.status === 'contacted').length || 0) / leadsCount * 100) : 0,
       potentialRevenue: (leadsCount || 0) * 1250 // Estimated average commission
     });
 

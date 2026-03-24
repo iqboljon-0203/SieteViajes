@@ -17,7 +17,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     setIsAdminSubdomain(window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka'));
   }, []);
 
-  const isLoginPage = pathname === '/admin/login' || (isAdminSubdomain && pathname === '/login');
+  const isLoginPage = pathname === '/admin/login' || (isAdminSubdomain && (pathname === '/login' || pathname === '/login')) || pathname === '/admin/login';
 
   useEffect(() => {
     async function checkAuth() {

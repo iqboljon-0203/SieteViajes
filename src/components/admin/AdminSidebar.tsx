@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { 
   Users, 
   Map, 
   LogOut, 
   LayoutDashboard,
-  Quote,
+  Quote, 
   LayoutGrid,
   HelpCircle,
   Settings,
@@ -25,20 +26,25 @@ interface AdminSidebarProps {
 export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const [isAdminSubdomain, setIsAdminSubdomain] = useState(false);
+  
+  useEffect(() => {
+    setIsAdminSubdomain(window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka'));
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push('/admin/login');
+    router.push(isAdminSubdomain ? '/login' : '/admin/login');
   };
 
   const navItems = [
-    { href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { href: '/admin/tours', icon: Map, label: 'Manage Tours' },
-    { href: '/admin/quiz', icon: HelpCircle, label: 'Interactive Quiz' },
-    { href: '/admin/inquiries', icon: Users, label: 'Inquiries' },
-    { href: '/admin/reviews', icon: Quote, label: 'Traveler Reviews' },
-    { href: '/admin/services', icon: LayoutGrid, label: 'Land. Page Details' },
-    { href: '/admin/settings', icon: Settings, label: 'Mission Control' },
+    { href: isAdminSubdomain ? '/dashboard' : '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: isAdminSubdomain ? '/tours' : '/admin/tours', icon: Map, label: 'Manage Tours' },
+    { href: isAdminSubdomain ? '/quiz' : '/admin/quiz', icon: HelpCircle, label: 'Interactive Quiz' },
+    { href: isAdminSubdomain ? '/inquiries' : '/admin/inquiries', icon: Users, label: 'Inquiries' },
+    { href: isAdminSubdomain ? '/reviews' : '/admin/reviews', icon: Quote, label: 'Traveler Reviews' },
+    { href: isAdminSubdomain ? '/services' : '/admin/services', icon: LayoutGrid, label: 'Land. Page Details' },
+    { href: isAdminSubdomain ? '/settings' : '/admin/settings', icon: Settings, label: 'Mission Control' },
   ];
 
   return (
@@ -57,13 +63,13 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         </button>
 
         {/* Back to Site Link */}
-        <Link 
-          href="/" 
+        <a 
+          href={isAdminSubdomain ? `https://${window.location.hostname.replace(/^(admin|adminka)\./, '')}` : '/'} 
           className="flex items-center gap-2 text-[9px] font-black uppercase text-gold tracking-[0.2em] mb-6 hover:translate-x-1 transition-transform group shrink-0"
         >
           <ArrowRight className="w-2.5 h-2.5 rotate-180 group-hover:-translate-x-1 transition-transform" />
           Back to Site
-        </Link>
+        </a>
 
         {/* Logo Section */}
         <div className="flex items-center gap-2.5 mb-8 transition-transform duration-300 hover:scale-[1.03] shrink-0">
@@ -82,7 +88,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
 
         <nav className="space-y-1.5 flex-1 font-bold text-xs">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href !== '/admin/dashboard' && pathname.startsWith(item.href));
+            const isActive = pathname === item.href || (item.label !== 'Dashboard' && pathname.startsWith(item.href));
             return (
               <Link 
                 key={item.href}

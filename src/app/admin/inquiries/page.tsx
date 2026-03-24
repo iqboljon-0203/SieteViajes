@@ -40,7 +40,7 @@ export default function AdminInquiriesPage() {
       .eq('id', id);
     
     if (!error) {
-      setLeads(leads.map(l => l.id === id ? { ...l, status: newStatus } : l));
+      setLeads(leads.map((l: any) => l.id === id ? { ...l, status: newStatus } : l));
       if (selectedLead?.id === id) setSelectedLead({...selectedLead, status: newStatus});
     }
   };
@@ -49,12 +49,12 @@ export default function AdminInquiriesPage() {
     if (!confirm('Are you sure you want to delete this mission-critical lead?')) return;
     const { error } = await supabase.from('leads').delete().eq('id', id);
     if (!error) {
-      setLeads(leads.filter(l => l.id !== id));
+      setLeads(leads.filter((l: any) => l.id !== id));
       setSelectedLead(null);
     }
   };
 
-  const filteredLeads = leads.filter(l => {
+  const filteredLeads = leads.filter((l: any) => {
     const matchesSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           (l.phone || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
                           (l.tour_name || '').toLowerCase().includes(searchTerm.toLowerCase());
@@ -79,7 +79,7 @@ export default function AdminInquiriesPage() {
         <div className="flex items-center gap-3">
            <div className="bg-azure/5 dark:bg-azure/10 border border-azure/20 px-4 py-2 rounded-xl flex flex-col items-end">
               <span className="text-[8px] font-black text-azure uppercase tracking-widest">Velocity</span>
-              <span className="text-xl font-black text-slate-900 dark:text-white italic tracking-tighter">{leads.filter(l => l.status === 'new').length} <span className="text-[10px] text-slate-400 italic">NEW</span></span>
+              <span className="text-xl font-black text-slate-900 dark:text-white italic tracking-tighter">{leads.filter((l: any) => l.status === 'new').length} <span className="text-[10px] text-slate-400 italic">NEW</span></span>
            </div>
         </div>
       </header>

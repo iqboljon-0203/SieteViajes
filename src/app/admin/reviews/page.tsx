@@ -56,13 +56,13 @@ export default function AdminReviewsPage() {
 
   const handleToggleActive = async (id: string, current: boolean) => {
     await supabase.from('reviews').update({ is_active: !current }).eq('id', id);
-    setReviews(reviews.map(r => r.id === id ? { ...r, is_active: !current } : r));
+    setReviews(reviews.map((r: any) => r.id === id ? { ...r, is_active: !current } : r));
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this review?')) return;
     await supabase.from('reviews').delete().eq('id', id);
-    setReviews(reviews.filter(r => r.id !== id));
+    setReviews(reviews.filter((r: any) => r.id !== id));
   };
 
   const startEdit = (review: any) => {
@@ -140,7 +140,7 @@ export default function AdminReviewsPage() {
                      <div className="space-y-1">
                         <label className="text-[9px] font-black uppercase text-slate-400 tracking-widest pl-1">Rating</label>
                         <div className="flex items-center gap-2 py-3 bg-slate-50 dark:bg-slate-900 w-fit px-6 rounded-xl">
-                           {[1,2,3,4,5].map(s => (
+                           {[1,2,3,4,5].map((s: number) => (
                               <button key={s} type="button" onClick={() => setFormData({...formData, rating: s})}>
                                  <Star className={`w-5 h-5 ${s <= formData.rating ? 'fill-gold text-gold' : 'text-slate-200'} transition-all hover:scale-110`} />
                               </button>
@@ -229,7 +229,7 @@ export default function AdminReviewsPage() {
         <div className="flex justify-center py-20"><Loader2 className="w-10 h-10 animate-spin text-azure" /></div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-           {reviews.map((review) => (
+           {reviews.map((review: any) => (
              <motion.div 
                layout
                key={review.id} 
@@ -255,7 +255,7 @@ export default function AdminReviewsPage() {
                           </div>
                       </div>
                       <div className="flex items-center gap-0.5">
-                         {[...Array(5)].map((_, i) => (
+                         {[...Array(5)].map((_: any, i: number) => (
                            <Star key={i} className={`w-3 h-3 ${i < review.rating ? 'fill-gold text-gold' : 'text-slate-100'}`} />
                          ))}
                       </div>
