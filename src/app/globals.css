@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* ========================================
+   SieteViajesSilkRoad Design System
+   ======================================== */
+
+/* Standard variables for Light Mode */
+:root {
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #F8F6F0;
+  --bg-surface: #FFFFFF;
+  --text-primary: #1A1A2E;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --border-primary: #E5E7EB;
+  --azure: #0B5394;
+  --gold: #D4A853;
+}
+
+/* Force Dark Mode overrides using data attribute and class */
+[data-theme='dark'],
+html.dark,
+.dark {
+  --bg-primary: #0F172A !important;
+  --bg-secondary: #1E293B !important;
+  --bg-surface: #1E293B !important;
+  --text-primary: #F8FAFC !important;
+  --text-secondary: #CBD5E1 !important;
+  --text-muted: #94A3B8 !important;
+  --border-primary: #334155 !important;
+  color-scheme: dark;
+}
+
+@theme inline {
+  /* Theme mapping to variables */
+  --color-pearl: var(--bg-primary);
+  --color-pearl-warm: var(--bg-secondary);
+  --color-surface: var(--bg-surface);
+  --color-text-dark: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  --color-text-light: var(--text-muted);
+  --color-border: var(--border-primary);
+
+  --color-azure: var(--azure);
+  --color-gold: var(--gold);
+  
+  --color-gold-dark: #8B6B00;
+  --color-gold-light: #E8C97A;
+  --color-azure-light: #1A6BB5;
+  --color-azure-dark: #083D6F;
+
+  /* Fonts */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Global Reset & Base
+   ======================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-pearl);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 300ms, color 300ms;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Form inputs adjustment for dark mode */
+.form-input, .form-textarea {
+  background-color: var(--color-surface);
+  color: var(--color-text-dark);
+  border-color: var(--color-border);
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: var(--color-text-light);
+}
+
+/* Navbar blur effect dark mode */
+.fixed.bg-white\/95 {
+  @apply dark:bg-slate-900/90;
+}
+
+/* Utilities */
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 50%, var(--color-gold) 100%);
+}
+
+.azure-gradient {
+  background: linear-gradient(135deg, var(--color-azure-dark) 0%, var(--color-azure) 50%, var(--color-azure-light) 100%);
+}
+
+.uzbek-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230B5394' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dark .uzbek-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A853' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
