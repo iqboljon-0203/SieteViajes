@@ -4,15 +4,22 @@ import { supabase } from '@/lib/supabase'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sieteviajes.com'
   
-  // Fetch dynamic slugs
-  const { data: tours } = await supabase.from('tours').select('slug, updated_at')
-  
-  const tourUrls = (tours || []).map((tour) => ({
-    url: `${baseUrl}/tour/${tour.slug}`,
-    lastModified: tour.updated_at || new Date().toISOString(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  // Fetch dynamic slugs safely
+  let tourUrls: any[] = []
+  if (supabase) {
+    try {
+      const { data: tours } = await supabase.from('tours').select('slug, updated_at')
+      
+      tourUrls = (tours || []).map((tour: any) => ({
+        url: `${baseUrl}/tour/${tour.slug}`,
+        lastModified: tour.updated_at || new Date().toISOString(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
+    } catch (e) {
+      console.error('Sitemap generation: tour fetch failed:', e)
+    }
+  }
 
   const staticUrls = [
     {

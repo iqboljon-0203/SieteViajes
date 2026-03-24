@@ -7,7 +7,11 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase credentials missing. Data may not be dynamic.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Only initialize if credentials are provided to avoid build-time crashes.
+// During build on Vercel, env vars might be missing if not explicitly configured in the UI.
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : (null as any); 
 
 export interface TourDB {
   id: string;
