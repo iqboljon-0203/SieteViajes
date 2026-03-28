@@ -24,11 +24,11 @@ export function SmartSearch() {
 
   const selectStyle: React.CSSProperties = {
     width: '100%',
-    paddingLeft: '2.5rem',
-    paddingRight: '1rem',
-    paddingTop: '0.875rem',
-    paddingBottom: '0.875rem',
-    fontSize: '0.875rem',
+    paddingLeft: '2.2rem',
+    paddingRight: '0.75rem',
+    paddingTop: '0.75rem',
+    paddingBottom: '0.75rem',
+    fontSize: '0.75rem',
     backgroundColor: 'var(--color-surface)',
     borderRadius: '0.75rem',
     border: '1px solid var(--color-border)',
@@ -36,6 +36,7 @@ export function SmartSearch() {
     color: 'var(--color-text-dark)',
     cursor: 'pointer',
     appearance: 'none' as const,
+    fontWeight: '600'
   };
 
   const inputStyle: React.CSSProperties = {
@@ -45,11 +46,11 @@ export function SmartSearch() {
   };
 
   return (
-    <div className="glass-card dark:bg-slate-900/40" style={{ borderRadius: '1rem', padding: '0.5rem', maxWidth: '56rem', margin: '0 auto', boxShadow: '0 20px 60px rgba(0,0,0,0.1)' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '0.5rem' }} className="search-grid">
+    <div className="glass-card dark:bg-slate-900/60 p-2 sm:p-2.5 rounded-2xl sm:rounded-[1.5rem] w-full max-w-[56rem] mx-auto shadow-2xl">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-2.5 items-center">
         {/* City */}
-        <div style={{ position: 'relative' }}>
-          <MapPin style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', width: '1rem', height: '1rem', color: 'var(--color-azure)' }} />
+        <div className="relative">
+          <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-azure" />
           <select value={city} onChange={(e) => setCity(e.target.value)} style={selectStyle}>
             <option value="">{t('search.city.all')}</option>
             <option value="samarkand">{t('search.city.samarkand')}</option>
@@ -60,14 +61,14 @@ export function SmartSearch() {
         </div>
 
         {/* Date */}
-        <div style={{ position: 'relative' }}>
-          <Calendar style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', width: '1rem', height: '1rem', color: 'var(--color-azure)' }} />
+        <div className="relative">
+          <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-azure" />
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} style={inputStyle} />
         </div>
 
         {/* Group */}
-        <div style={{ position: 'relative' }}>
-          <Users style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', width: '1rem', height: '1rem', color: 'var(--color-azure)' }} />
+        <div className="relative">
+          <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-azure" />
           <select value={group} onChange={(e) => setGroup(e.target.value)} style={selectStyle}>
             <option value="">{t('search.group')}</option>
             <option value="1">1 {t('search.group.person')}</option>
@@ -78,8 +79,8 @@ export function SmartSearch() {
         </div>
 
         {/* Type */}
-        <div style={{ position: 'relative' }}>
-          <Compass style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', width: '1rem', height: '1rem', color: 'var(--color-azure)' }} />
+        <div className="relative">
+          <Compass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-azure" />
           <select value={type} onChange={(e) => setType(e.target.value)} style={selectStyle}>
             <option value="">{t('search.type.all')}</option>
             <option value="cultural">{t('search.type.cultural')}</option>
@@ -92,40 +93,12 @@ export function SmartSearch() {
         {/* Search Button */}
         <button
           onClick={handleSearch}
-          className="gold-gradient"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            padding: '0.875rem 1.5rem',
-            borderRadius: '0.75rem',
-            color: 'white',
-            fontWeight: '600',
-            fontSize: '0.875rem',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-            transition: 'all 300ms',
-          }}
+          className="gold-gradient col-span-2 sm:col-span-1 h-[42px] sm:h-full flex items-center justify-center gap-2 rounded-xl text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-[1.02] transition-all"
         >
-          <Search style={{ width: '1rem', height: '1rem' }} />
+          <Search className="w-4 h-4" />
           {t('search.button')}
         </button>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .search-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .search-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

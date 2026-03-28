@@ -140,7 +140,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          style={{ marginTop: '3rem' }}
+          className="mt-8 sm:mt-16"
         >
           <SmartSearch />
         </motion.div>
