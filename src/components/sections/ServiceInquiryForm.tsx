@@ -70,7 +70,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
         <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
-        <h3 className="text-2xl font-bold font-heading text-text-dark uppercase italic tracking-tight">{t('contact.success_title')}</h3>
+        <h3 className="text-2xl font-bold font-heading text-text-dark uppercase tracking-tight">{t('contact.success_title')}</h3>
         <p className="text-text-muted font-medium max-w-sm mx-auto">{t('contact.success_message')}</p>
         <button 
           onClick={() => setStatus('idle')}
@@ -191,7 +191,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
       </div>
 
       {status === 'error' && (
-        <div className="p-4 bg-rose-500/20 rounded-xl flex items-center gap-3 text-rose-200 text-sm italic">
+        <div className="p-4 bg-rose-500/20 rounded-xl flex items-center gap-3 text-rose-200 text-sm">
           <AlertCircle size={18} />
           {t('booking.error_title')}
         </div>

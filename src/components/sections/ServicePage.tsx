@@ -56,12 +56,12 @@ export function ServicePage({ type, image }: ServicePageProps) {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-5 py-2 glass-card-dark dark:bg-surface/50 backdrop-blur-md rounded-full border border-border text-gold text-[10px] font-bold uppercase tracking-[0.2em] italic">
+              <div className="inline-flex items-center gap-2 px-5 py-2 glass-card-dark dark:bg-surface/50 backdrop-blur-md rounded-full border border-border text-gold text-[10px] font-bold uppercase tracking-[0.2em]">
                 <Sparkles className="w-3 h-3" />
                 Specialized Service
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold font-heading text-text-dark italic uppercase tracking-tight leading-[1.1]">
+              <h1 className="text-5xl md:text-7xl font-bold font-heading text-text-dark uppercase tracking-tight leading-[1.1]">
                 {title.split(' ').map((word, i) => (
                   <span key={i} className={i % 2 === 1 ? 'text-azure' : 'text-text-dark'}>
                     {word} <br className="hidden md:block" />
@@ -69,7 +69,7 @@ export function ServicePage({ type, image }: ServicePageProps) {
                 ))}
               </h1>
 
-              <p className="text-xl text-text-muted font-medium italic leading-relaxed max-w-xl">
+              <p className="text-xl text-text-muted font-medium leading-relaxed max-w-xl">
                 {subtitle}
               </p>
             </motion.div>
@@ -93,7 +93,7 @@ export function ServicePage({ type, image }: ServicePageProps) {
                     <feature.icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-text-dark font-bold text-sm uppercase tracking-wide mb-1">{feature.title}</h3>
-                  <p className="text-text-muted text-[11px] font-medium leading-relaxed italic">{feature.desc}</p>
+                  <p className="text-text-muted text-[11px] font-medium leading-relaxed">{feature.desc}</p>
                 </div>
               ))}
             </motion.div>
@@ -112,7 +112,7 @@ export function ServicePage({ type, image }: ServicePageProps) {
               
               <div className="relative bg-surface p-8 md:p-10 rounded-[2.5rem] border border-border shadow-xl">
                 <div className="mb-10 text-center">
-                  <h2 className="text-3xl font-bold font-heading text-text-dark italic uppercase tracking-tight mb-2">
+                  <h2 className="text-3xl font-bold font-heading text-text-dark uppercase tracking-tight mb-2">
                     Request <span className="text-gold">Details</span>
                   </h2>
                   <div className="w-12 h-1 gold-gradient mx-auto rounded-full" />
@@ -125,12 +125,12 @@ export function ServicePage({ type, image }: ServicePageProps) {
               <div className="mt-8 flex items-center justify-center gap-6 opacity-40 grayscale transition-all hover:grayscale-0 hover:opacity-100">
                  <div className="flex flex-col items-center">
                     <span className="text-[10px] font-bold uppercase text-text-dark tracking-widest leading-none">Safe Travel</span>
-                    <span className="text-[8px] font-medium text-gold uppercase mt-0.5 tracking-tighter italic">Certified Provider</span>
+                    <span className="text-[8px] font-medium text-gold uppercase mt-0.5 tracking-tighter">Certified Provider</span>
                  </div>
                  <div className="w-px h-8 bg-border" />
                  <div className="flex flex-col items-center">
                     <span className="text-[10px] font-bold uppercase text-text-dark tracking-widest leading-none">Instant Support</span>
-                    <span className="text-[8px] font-medium text-gold uppercase mt-0.5 tracking-tighter italic">24/7 Concierge</span>
+                    <span className="text-[8px] font-medium text-gold uppercase mt-0.5 tracking-tighter">24/7 Concierge</span>
                  </div>
               </div>
             </motion.div>
