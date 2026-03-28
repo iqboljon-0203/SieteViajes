@@ -6,7 +6,7 @@ import {
   Plus, Layers, Edit2, Trash2, CheckCircle, 
   XCircle, Loader2, Save, Trash, Map, Hotel, 
   Car, Utensils, Headset, ShieldCheck, Palette, 
-  GripVertical, Globe, Sparkles
+  GripVertical, Globe, Sparkles, Plane, Train
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,6 +14,8 @@ const ICON_OPTIONS = [
   { name: 'Map', icon: Map },
   { name: 'Hotel', icon: Hotel },
   { name: 'Car', icon: Car },
+  { name: 'Plane', icon: Plane },
+  { name: 'Train', icon: Train },
   { name: 'Utensils', icon: Utensils },
   { name: 'Headset', icon: Headset },
   { name: 'ShieldCheck', icon: ShieldCheck },
@@ -26,6 +28,8 @@ const ICON_MAP: Record<string, any> = {
   Utensils,
   Headset,
   ShieldCheck,
+  Plane,
+  Train,
 };
 
 const THEME_OPTIONS = [
@@ -207,6 +211,20 @@ export default function AdminServicesPage() {
                         </label>
                         <input type="text" required value={formData.title_es || ''} onChange={e => setFormData({...formData, title_es: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-bold italic text-sm" placeholder="Título (ES)" />
                         <textarea rows={2} value={formData.desc_es || ''} onChange={e => setFormData({...formData, desc_es: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-medium italic resize-none text-xs" placeholder="Desc (ES)" />
+                     </div>
+                     <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase text-slate-400 tracking-widest pl-1.5 flex items-center gap-2">
+                           <Globe size={11} className="text-red-500" /> RU Narrative
+                        </label>
+                        <input type="text" value={formData.title_ru || ''} onChange={e => setFormData({...formData, title_ru: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-bold italic text-sm" placeholder="Заголовок (RU)" />
+                        <textarea rows={2} value={formData.desc_ru || ''} onChange={e => setFormData({...formData, desc_ru: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-medium italic resize-none text-xs" placeholder="Описание (RU)" />
+                     </div>
+                     <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase text-slate-400 tracking-widest pl-1.5 flex items-center gap-2">
+                           <Globe size={11} className="text-green-500" /> UZ Narrative
+                        </label>
+                        <input type="text" value={formData.title_uz || ''} onChange={e => setFormData({...formData, title_uz: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-bold italic text-sm" placeholder="Sarlavha (UZ)" />
+                        <textarea rows={2} value={formData.desc_uz || ''} onChange={e => setFormData({...formData, desc_uz: e.target.value})} className="w-full px-5 py-3 bg-slate-50 dark:bg-slate-900 border-none rounded-xl font-medium italic resize-none text-xs" placeholder="Tavsif (UZ)" />
                      </div>
                   </div>
                </div>

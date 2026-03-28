@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Plane } from 'lucide-react';
+import { Menu, X, Plane, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { CurrencySelector } from '@/components/ui/CurrencySelector';
@@ -18,6 +18,7 @@ export function Navbar() {
   const isHome = pathname === '/';
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const { t } = useLanguage();
   const { theme } = useTheme();
   const { settings } = useSettings();
@@ -33,7 +34,12 @@ export function Navbar() {
   const navLinks = [
     { href: '/', label: t('nav.home') },
     { href: '/tour-catalog', label: t('nav.tours') },
-    { href: '/#contact', label: t('nav.contact') },
+  ];
+
+  const serviceLinks = [
+    { href: '/air-tickets', label: t('nav.air_tickets') },
+    { href: '/train-tickets', label: t('nav.train_tickets') },
+    { href: '/transport', label: t('nav.transport') },
   ];
 
   return (
@@ -63,12 +69,12 @@ export function Navbar() {
               <span className={`text-lg sm:text-xl font-bold font-heading tracking-tight transition-colors ${
                 isActuallyScrolled ? (theme === 'dark' ? 'text-gold' : 'text-azure') : 'text-white'
               }`}>
-                {settings.site_name.split(' ')[0]}
+                {settings.site_name?.split(' ')[0] || 'SieteViajes'}
               </span>
               <span className={`text-[10px] uppercase tracking-[0.2em] -mt-1 transition-colors ${
                 isActuallyScrolled ? (theme === 'dark' ? 'text-gold-light' : 'text-gold-dark') : 'text-gold-light'
               }`}>
-                {settings.site_name.split(' ').slice(1).join(' ') || 'Silk Road'}
+                {settings.site_name?.split(' ').slice(1).join(' ') || 'Silk Road'}
               </span>
             </div>
           </Link>
@@ -87,6 +93,54 @@ export function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
+
+            {/* Services Dropdown */}
+            <div 
+              className="relative group h-20 flex items-center"
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
+              <button
+                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-gold ${
+                  isActuallyScrolled ? 'text-text-dark' : 'text-white'
+                }`}
+              >
+                {t('nav.services')}
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                    className="absolute top-[80%] left-1/2 -translate-x-1/2 w-48 bg-surface border border-border rounded-2xl shadow-2xl py-2 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gold/5 pointer-events-none" />
+                    {serviceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="relative block px-4 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-text-dark hover:bg-gold hover:text-white transition-all italic"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              href="/#contact"
+              className={`text-sm font-medium transition-colors hover:text-gold relative group ${
+                isActuallyScrolled ? 'text-text-dark' : 'text-white'
+              }`}
+            >
+              {t('nav.contact')}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
+            </Link>
 
             <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200/30">
               <CurrencySelector scrolled={isActuallyScrolled} />
@@ -122,7 +176,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-surface border-t border-border shadow-xl"
+            className="md:hidden bg-surface border-t border-border shadow-xl max-h-[80vh] overflow-y-auto"
           >
             <div className="p-6 space-y-4">
               {navLinks.map((link) => (
@@ -135,6 +189,29 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+
+              <div className="space-y-1 pl-4 border-l-2 border-gold/30">
+                <span className="text-[10px] font-black uppercase text-text-muted tracking-widest px-4 block pb-2">{t('nav.services')}</span>
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block py-2.5 px-4 text-text-dark hover:text-gold text-sm font-medium"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              <Link
+                href="/#contact"
+                onClick={() => setIsOpen(false)}
+                className="block py-3 px-4 text-text-dark hover:text-azure hover:bg-pearl rounded-lg transition-all text-base font-medium"
+              >
+                {t('nav.contact')}
+              </Link>
+              
               <div className="flex items-center justify-between gap-4 py-3 px-4 bg-pearl-warm rounded-xl">
                 <div className="flex gap-4">
                   <CurrencySelector scrolled={true} />

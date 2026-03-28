@@ -57,6 +57,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         const { data, error } = await supabase
           .from('site_settings')
           .select('id, site_name, site_logo, contact_email, contact_phone, contact_whatsapp, contact_telegram, instagram_url, facebook_url, footer_text_en, footer_text_es, footer_text_ru, footer_text_uz, address, instagram_images, hero_background')
+          .order('updated_at', { ascending: false })
           .limit(1);
         
         if (error) {
@@ -65,10 +66,18 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         }
 
         if (data && data.length > 0) {
-          setSettings({
-            ...defaultSettings,
-            ...data[0]
+          const fetchedSettings = data[0];
+          const mergedSettings = { ...defaultSettings };
+          
+          Object.keys(fetchedSettings).forEach((key) => {
+            const val = (fetchedSettings as any)[key];
+            // Only override default if the fetched value is not null, undefined, or an empty string
+            if (val !== null && val !== undefined && val !== '') {
+              (mergedSettings as any)[key] = val;
+            }
           });
+
+          setSettings(mergedSettings);
         }
       } catch (err) {
         console.error('Failed to load site settings:', err);

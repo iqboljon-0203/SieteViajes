@@ -73,14 +73,29 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     setSaving(true);
     
-    const { error } = await supabase.from('site_settings').upsert(formData);
-    
-    if (error) {
-       alert('Error saving settings: ' + error.message);
-    } else {
-       alert('Global settings updated successfully!');
+    try {
+      // First, check if we have an existing record to update to ensure we keep it as a singleton
+      const { data: existing } = await supabase.from('site_settings').select('id').limit(1);
+      
+      const saveData = { ...formData };
+      if (existing && existing.length > 0) {
+        saveData.id = existing[0].id; // Explicitly target the existing record
+      }
+
+      const { error } = await supabase.from('site_settings').upsert(saveData);
+      
+      if (error) {
+        alert('Error saving settings: ' + error.message);
+      } else {
+        alert('Global settings updated successfully! Changes will be visible on the public site.');
+        // Refetch to ensure local form state is precisely in sync with DB
+        await fetchSettings();
+      }
+    } catch (err: any) {
+      alert('Fatal error during save: ' + err.message);
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   };
 
   if (loading) return <div className="flex justify-center items-center h-screen"><Loader2 className="animate-spin text-azure w-10 h-10" /></div>;

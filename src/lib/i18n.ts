@@ -9,6 +9,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.contact': 'Contacto',
     'nav.book': 'Reservar',
     'nav.back': 'Volver al Inicio',
+    'nav.services': 'Servicios',
+    'nav.air_tickets': 'Vuelos',
+    'nav.train_tickets': 'Trenes',
+    'nav.transport': 'Transporte',
 
     // Hero
     'hero.title': 'Descubre la Magia de la Ruta de la Seda',
@@ -201,6 +205,19 @@ export const translations: Record<Locale, Record<string, string>> = {
     'pdf.highlights': 'Puntos Destacados',
     'pdf.notice': 'Aviso:',
     'pdf.disclaimer': 'Esta es una propuesta de itinerario generada. Los boletos aéreos no están incluidos a menos que se indique explícitamente. Las visas y seguros de viaje pueden agregarse opcionalmente.',
+    
+    // Service Pages
+    'services.air.title': 'Billetes de Avión',
+    'services.air.subtitle': 'Reserva tus vuelos nacionales e internacionales con las mejores tarifas.',
+    'services.train.title': 'Billetes de Tren',
+    'services.train.subtitle': 'Viaja cómodamente en los trenes de alta velocidad Afrosiyob entre ciudades históricas.',
+    'services.transport.title': 'Transporte VIP',
+    'services.transport.subtitle': 'Traslados privados de lujo con conductores profesionales por todo Uzbekistán.',
+    'services.form.origin': 'Origen',
+    'services.form.destination': 'Destino',
+    'services.form.date': 'Fecha de viaje',
+    'services.form.passengers': 'Pasajeros',
+    'services.form.request': 'Solicitar Reserva',
   },
   en: {
     // Navigation
@@ -210,6 +227,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.contact': 'Contact',
     'nav.book': 'Book Now',
     'nav.back': 'Back to Home',
+    'nav.services': 'Services',
+    'nav.air_tickets': 'Air Tickets',
+    'nav.train_tickets': 'Train Tickets',
+    'nav.transport': 'Transport',
 
     // Hero
     'hero.title': 'Discover the Magic of the Silk Road',
@@ -403,6 +424,19 @@ export const translations: Record<Locale, Record<string, string>> = {
     'pdf.highlights': 'Key Highlights',
     'pdf.notice': 'Notice:',
     'pdf.disclaimer': 'This is a generated itinerary proposal. Flight tickets are not included unless explicitly stated. Visas and travel insurance can be added optionally.',
+    
+    // Service Pages
+    'services.air.title': 'Air Tickets',
+    'services.air.subtitle': 'Book your domestic and international flights with the best rates.',
+    'services.train.title': 'Train Tickets',
+    'services.train.subtitle': 'Travel comfortably on Afrosiyob high-speed trains between ancient cities.',
+    'services.transport.title': 'VIP Transport',
+    'services.transport.subtitle': 'Luxury private transfers with professional drivers across Uzbekistan.',
+    'services.form.origin': 'Origin',
+    'services.form.destination': 'Destination',
+    'services.form.date': 'Travel Date',
+    'services.form.passengers': 'Passengers',
+    'services.form.request': 'Request Booking',
   },
   ru: {
     // Navigation
@@ -412,6 +446,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.contact': 'Контакт',
     'nav.book': 'Забронировать',
     'nav.back': 'На главную',
+    'nav.services': 'Услуги',
+    'nav.air_tickets': 'Авиабилеты',
+    'nav.train_tickets': 'Ж/Д Билеты',
+    'nav.transport': 'Транспорт',
 
     // Hero
     'hero.title': 'Откройте магию Шелкового пути',
@@ -605,6 +643,19 @@ export const translations: Record<Locale, Record<string, string>> = {
     'pdf.highlights': 'Основные моменты',
     'pdf.notice': 'Примечание:',
     'pdf.disclaimer': 'Это сгенерированное предложение по маршруту. Авиабилеты не включены, если не указано иное. Визы и страхование могут быть добавлены дополнительно.',
+    
+    // Service Pages
+    'services.air.title': 'Авиабилеты',
+    'services.air.subtitle': 'Бронируйте внутренние и международные рейсы по лучшим тарифам.',
+    'services.train.title': 'Ж/Д Билеты',
+    'services.train.subtitle': 'Путешествуйте с комфортом на скоростных поездах Афросиаб между древними городами.',
+    'services.transport.title': 'VIP Транспорт',
+    'services.transport.subtitle': 'Роскошные частные трансферы с профессиональными водителями по всему Узбекистану.',
+    'services.form.origin': 'Откуда',
+    'services.form.destination': 'Куда',
+    'services.form.date': 'Дата поездки',
+    'services.form.passengers': 'Пассажиры',
+    'services.form.request': 'Запросить бронирование',
   },
   uz: {
     // Navigation
@@ -614,6 +665,10 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.contact': 'Aloqa',
     'nav.book': 'Band qilish',
     'nav.back': 'Ortga qaytish',
+    'nav.services': 'Xizmatlar',
+    'nav.air_tickets': 'Avia biletlar',
+    'nav.train_tickets': 'J/D biletlar',
+    'nav.transport': 'Transport',
 
     // Hero
     'hero.title': 'Ipak yoʻli sehrini kashf eting',
@@ -807,5 +862,18 @@ export const translations: Record<Locale, Record<string, string>> = {
     'pdf.highlights': 'Asosiy qismlar',
     'pdf.notice': 'Eslatma:',
     'pdf.disclaimer': 'Ushbu taklif avtomatik yaratilgan. Parvoz chiptalari, agar ko\'rsatilmagan bo\'lsa, narxga kirmaydi. Viza va sug\'urta ixtiyoriy ravishda qo\'shilishi mumkin.',
+    
+    // Service Pages
+    'services.air.title': 'Avia biletlar',
+    'services.air.subtitle': 'Ichki va xalqaro parvozlarni eng yaxshi narxlarda band qiling.',
+    'services.train.title': 'J/D biletlar',
+    'services.train.subtitle': 'Tarixiy shaharlar o\'rtasida Afrosiyob tezyurar poyezdlarida qulay sayohat qiling.',
+    'services.transport.title': 'Transport xizmati',
+    'services.transport.subtitle': 'Butun O\'zbekiston bo\'ylab professional haydovchilar bilan hashamatli shaxsiy transferlar.',
+    'services.form.origin': 'Qayerdan',
+    'services.form.destination': 'Qayerga',
+    'services.form.date': 'Sana',
+    'services.form.passengers': 'Yo\'lovchilar',
+    'services.form.request': 'Band qilishni so\'rash',
   },
 };

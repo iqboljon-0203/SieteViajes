@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Hotel, Car, Utensils, Headset, Map, Loader2, Sparkles, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Hotel, Car, Utensils, Headset, Map, Loader2, Sparkles, ChevronRight, Plane, Train } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { supabase } from '@/lib/supabase';
+import Link from 'next/link';
 
 const ICON_MAP: Record<string, any> = {
   ShieldCheck,
@@ -13,6 +14,8 @@ const ICON_MAP: Record<string, any> = {
   Utensils,
   Headset,
   Map,
+  Plane,
+  Train
 };
 
 export function ServiceBento() {
@@ -33,8 +36,14 @@ export function ServiceBento() {
     loadServices();
   }, []);
 
+  const getServiceLink = (iconName: string) => {
+    if (iconName === 'Car') return '/transport';
+    if (iconName === 'Plane') return '/air-tickets';
+    if (iconName === 'Train') return '/train-tickets';
+    return null;
+  };
+
   const getClassName = (theme: string, idx: number) => {
-    // Large tile for the first one for visual hierarchy
     const base = idx === 0 ? 'md:col-span-2 md:row-span-2 h-full' : 'h-full';
     
     if (theme === 'blue') return `${base} azure-gradient text-white shadow-xl shadow-azure/20 ring-1 ring-white/10`;
@@ -44,7 +53,7 @@ export function ServiceBento() {
   };
 
   return (
-    <section className="py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
+    <section id="services" className="py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
       {/* Background Ornaments */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-azure/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
       
@@ -95,8 +104,8 @@ export function ServiceBento() {
                 const IconComponent = ICON_MAP[service.icon_name] || Map;
                 const className = getClassName(service.color_theme, i);
                 const isDark = className.includes('azure-gradient') || className.includes('gold-gradient');
+                const link = getServiceLink(service.icon_name);
                 
-                // Content resolution for 4 languages
                 const getTitle = () => {
                     if (locale === 'ru') return service.title_ru || service.title_en || service.title_es;
                     if (locale === 'uz') return service.title_uz || service.title_en || service.title_es;
@@ -111,16 +120,14 @@ export function ServiceBento() {
                     return service.desc_en || service.desc_es;
                 };
 
-                return (
+                const CardContent = (
                   <motion.div
-                    key={service.id}
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
-                    className={`rounded-[2.5rem] p-10 flex flex-col group relative overflow-hidden transition-all duration-700 hover:-translate-y-2 ${className}`}
+                    className={`rounded-[2.5rem] p-10 flex flex-col group relative overflow-hidden transition-all duration-700 h-full ${link ? 'cursor-pointer hover:-translate-y-2' : ''} ${className}`}
                   >
-                    {/* Decorative hover element */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
                     <div className={`mb-auto transition-all duration-700 group-hover:scale-110 group-hover:rotate-6 ${isDark ? 'text-white' : 'text-azure'}`}>
@@ -130,18 +137,35 @@ export function ServiceBento() {
                     </div>
 
                     <div className="relative z-10">
-                      <h3 className="font-bold text-lg md:text-xl mb-3 font-heading transition-all duration-700">
+                      <h3 className="font-bold text-lg md:text-xl mb-3 font-heading transition-all duration-700 italic uppercase tracking-tighter">
                         {getTitle()}
                       </h3>
-                      <p className={`text-sm font-medium leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-700 ${isDark ? 'text-white/80' : 'text-slate-500 dark:text-slate-400'}`}>
+                      <p className={`text-[11px] font-bold leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all duration-700 uppercase tracking-tight ${isDark ? 'text-white/80' : 'text-slate-400'}`}>
                         {getDescription()}
                       </p>
                     </div>
 
-                    <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700">
-                       <ChevronRight className={isDark ? 'text-white' : 'text-azure'} size={24} />
-                    </div>
+                    {link && (
+                      <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700 flex items-center gap-2">
+                         <span className="text-[8px] font-black uppercase tracking-widest italic">Discover</span>
+                         <ChevronRight className={isDark ? 'text-white' : 'text-azure'} size={18} />
+                      </div>
+                    )}
                   </motion.div>
+                );
+
+                if (link) {
+                  return (
+                    <Link key={service.id} href={link} className={i === 0 ? 'md:col-span-2 md:row-span-2' : ''}>
+                      {CardContent}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div key={service.id} className={i === 0 ? 'md:col-span-2 md:row-span-2' : ''}>
+                    {CardContent}
+                  </div>
                 );
               })}
             </div>
