@@ -448,7 +448,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.back': 'На главную',
     'nav.services': 'Услуги',
     'nav.air_tickets': 'Авиабилеты',
-    'nav.train_tickets': 'Ж/Д Билеты',
+    'nav.train_tickets': 'Билеты на поезд',
     'nav.transport': 'Транспорт',
 
     // Hero
@@ -647,9 +647,9 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Service Pages
     'services.air.title': 'Авиабилеты',
     'services.air.subtitle': 'Бронируйте внутренние и международные рейсы по лучшим тарифам.',
-    'services.train.title': 'Ж/Д Билеты',
-    'services.train.subtitle': 'Путешествуйте с комфортом на скоростных поездах Афросиаб между древними городами.',
-    'services.transport.title': 'VIP Транспорт',
+    'services.train.title': 'Билеты на поезд',
+    'services.train.subtitle': 'Путешествуйте с комфортом на скоростном поезде «Афросиаб» между древними городами.',
+    'services.transport.title': 'Транспорт',
     'services.transport.subtitle': 'Роскошные частные трансферы с профессиональными водителями по всему Узбекистану.',
     'services.form.origin': 'Откуда',
     'services.form.destination': 'Куда',
@@ -667,7 +667,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.back': 'Ortga qaytish',
     'nav.services': 'Xizmatlar',
     'nav.air_tickets': 'Avia biletlar',
-    'nav.train_tickets': 'J/D biletlar',
+    'nav.train_tickets': 'Poyezd biletlari',
     'nav.transport': 'Transport',
 
     // Hero
@@ -866,8 +866,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Service Pages
     'services.air.title': 'Avia biletlar',
     'services.air.subtitle': 'Ichki va xalqaro parvozlarni eng yaxshi narxlarda band qiling.',
-    'services.train.title': 'J/D biletlar',
-    'services.train.subtitle': 'Tarixiy shaharlar o\'rtasida Afrosiyob tezyurar poyezdlarida qulay sayohat qiling.',
+    'services.train.title': 'Poyezd biletlari',
+    'services.train.subtitle': 'Tarixiy shaharlar orasida tezyurar «Afrosiyob» poyezdida qulay sayohat qiling.',
     'services.transport.title': 'Transport xizmati',
     'services.transport.subtitle': 'Butun O\'zbekiston bo\'ylab professional haydovchilar bilan hashamatli shaxsiy transferlar.',
     'services.form.origin': 'Qayerdan',
