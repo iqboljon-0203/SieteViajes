@@ -70,11 +70,11 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
         <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
-        <h3 className="text-2xl font-bold text-text-dark uppercase italic tracking-tighter">{t('contact.success_title')}</h3>
-        <p className="text-text-muted max-w-sm mx-auto">{t('contact.success_message')}</p>
+        <h3 className="text-2xl font-bold font-heading text-text-dark uppercase italic tracking-tight">{t('contact.success_title')}</h3>
+        <p className="text-text-muted font-medium max-w-sm mx-auto">{t('contact.success_message')}</p>
         <button 
           onClick={() => setStatus('idle')}
-          className="px-8 py-3 bg-azure text-white font-black text-[10px] uppercase tracking-widest rounded-xl hover:bg-gold transition-all shadow-lg"
+          className="px-8 py-3 bg-azure text-white font-bold text-[10px] uppercase tracking-widest rounded-xl hover:bg-gold transition-all shadow-lg"
         >
           {t('nav.back')}
         </button>
@@ -92,7 +92,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('contact.name')}
           </label>
           <input
@@ -105,7 +105,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('contact.phone')}
           </label>
           <input
@@ -121,7 +121,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('services.form.origin')}
           </label>
           <input
@@ -134,7 +134,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('services.form.destination')}
           </label>
           <input
@@ -150,7 +150,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('services.form.date')}
           </label>
           <input
@@ -162,7 +162,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+          <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
             {t('services.form.passengers')}
           </label>
           <select
@@ -178,7 +178,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-black uppercase text-text-muted tracking-widest pl-2">
+        <label className="text-[10px] font-bold uppercase text-text-muted tracking-widest pl-2">
           {t('contact.message')}
         </label>
         <textarea
@@ -200,7 +200,7 @@ export function ServiceInquiryForm({ serviceType }: ServiceInquiryFormProps) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-5 gold-gradient rounded-2xl text-white font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:scale-100"
+        className="w-full py-5 gold-gradient rounded-2xl text-white font-bold text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:scale-100"
       >
         {status === 'loading' ? (
           <Loader2 className="w-5 h-5 animate-spin" />
