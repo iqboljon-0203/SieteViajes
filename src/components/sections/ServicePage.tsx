@@ -63,7 +63,7 @@ export function ServicePage({ type, image }: ServicePageProps) {
               
               <h1 className="text-5xl md:text-7xl font-bold font-heading text-text-dark italic uppercase tracking-tight leading-[1.1]">
                 {title.split(' ').map((word, i) => (
-                  <span key={i} className={i % 2 === 1 ? 'text-stroke-azure text-transparent' : 'text-text-dark'}>
+                  <span key={i} className={i % 2 === 1 ? 'text-azure' : 'text-text-dark'}>
                     {word} <br className="hidden md:block" />
                   </span>
                 ))}
