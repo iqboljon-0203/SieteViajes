@@ -20,8 +20,9 @@ export function middleware(req: NextRequest) {
   if (hostname && (hostname.startsWith('admin.') || hostname.startsWith('adminka.'))) {
     // Check if the current internal path already starts with /admin
     if (!url.pathname.startsWith('/admin')) {
-      const newPath = `/admin${url.pathname === '/' ? '' : url.pathname}`;
-      return NextResponse.rewrite(new URL(newPath, req.url));
+      const rewrittenUrl = req.nextUrl.clone();
+      rewrittenUrl.pathname = `/admin${url.pathname === '/' ? '' : url.pathname}`;
+      return NextResponse.rewrite(rewrittenUrl);
     }
   }
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Globe, Share2 } from 'lucide-react';
@@ -9,13 +10,18 @@ import { useSettings } from '@/context/SettingsContext';
 
 export function Footer() {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/admin') || (typeof window !== 'undefined' && (window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka')));
+  const [isAdmin, setIsAdmin] = useState(pathname?.startsWith('/admin'));
   
   const lanContext = useLanguage();
   const setContext = useSettings();
   
   const { t, locale } = lanContext;
   const { settings } = setContext;
+
+  useEffect(() => {
+    const isSubdomain = window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka');
+    setIsAdmin(pathname?.startsWith('/admin') || isSubdomain);
+  }, [pathname]);
 
   const footerText = locale === 'ru' ? settings.footer_text_ru : 
                      locale === 'uz' ? settings.footer_text_uz : 

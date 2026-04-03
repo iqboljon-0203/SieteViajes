@@ -15,11 +15,10 @@ import { useSettings } from '@/context/SettingsContext';
 
 export function Navbar() {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/admin') || (typeof window !== 'undefined' && (window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka')));
-  
   const isHome = pathname === '/';
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(pathname?.startsWith('/admin'));
   
   const lanContext = useLanguage();
   const themeContext = useTheme();
@@ -32,10 +31,13 @@ export function Navbar() {
   const isActuallyScrolled = scrolled || !isHome;
 
   useEffect(() => {
+    const isSubdomain = window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka');
+    setIsAdmin(pathname?.startsWith('/admin') || isSubdomain);
+    
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   const navLinks = [
     { href: '/', label: t('nav.home') },
