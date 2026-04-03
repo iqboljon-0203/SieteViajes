@@ -16,14 +16,40 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
+  const requestHeaders = new Headers(req.headers);
+
   // Subdomain Logic: If host is admin.something.com or adminka.something.com
   if (hostname && (hostname.startsWith('admin.') || hostname.startsWith('adminka.'))) {
+    requestHeaders.set('x-is-admin', 'true');
     // Check if the current internal path already starts with /admin
     if (!url.pathname.startsWith('/admin')) {
+      const rewrittenPath = `/admin${url.pathname === '/' ? '' : url.pathname}`;
+      
+      if (rewrittenPath === '/admin') {
+        return NextResponse.redirect(new URL('/admin/dashboard', req.url));
+      }
+      
       const rewrittenUrl = req.nextUrl.clone();
-      rewrittenUrl.pathname = `/admin${url.pathname === '/' ? '' : url.pathname}`;
-      return NextResponse.rewrite(rewrittenUrl);
+      rewrittenUrl.pathname = rewrittenPath;
+      return NextResponse.rewrite(rewrittenUrl, {
+        request: {
+          headers: requestHeaders,
+        },
+      });
     }
+  }
+
+  // Also set x-is-admin header for explicit /admin paths
+  if (url.pathname.startsWith('/admin')) {
+    requestHeaders.set('x-is-admin', 'true');
+    if (url.pathname === '/admin') {
+      return NextResponse.redirect(new URL('/admin/dashboard', req.url));
+    }
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
 
   return NextResponse.next();

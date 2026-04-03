@@ -18,7 +18,6 @@ export function Navbar() {
   const isHome = pathname === '/';
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(pathname?.startsWith('/admin'));
   
   const lanContext = useLanguage();
   const themeContext = useTheme();
@@ -31,13 +30,10 @@ export function Navbar() {
   const isActuallyScrolled = scrolled || !isHome;
 
   useEffect(() => {
-    const isSubdomain = window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka');
-    setIsAdmin(pathname?.startsWith('/admin') || isSubdomain);
-    
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+  }, []);
 
   const navLinks = [
     { href: '/', label: t('nav.home') },
@@ -47,8 +43,6 @@ export function Navbar() {
     { href: '/transport', label: t('nav.transport') },
     { href: '/#contact', label: t('nav.contact') },
   ];
-
-  if (isAdmin) return null;
 
   return (
     <motion.nav

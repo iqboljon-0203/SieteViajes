@@ -47,11 +47,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+import { headers } from 'next/headers';
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const isAdmin = headersList.get('x-is-admin') === 'true';
+
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
       <head>
@@ -60,7 +65,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://rtqsffcbkrwlwkvtsplp.supabase.co" />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-inter), system-ui, sans-serif' }}>
-        <Providers>{children}</Providers>
+        <Providers isAdmin={isAdmin}>{children}</Providers>
       </body>
     </html>
   );

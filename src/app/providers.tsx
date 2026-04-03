@@ -12,17 +12,17 @@ import NextTopLoader from 'nextjs-toploader';
 
 import { usePathname } from 'next/navigation';
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Providers({ children, isAdmin = false }: { children: ReactNode, isAdmin?: boolean }) {
   return (
     <ThemeProvider>
       <CurrencyProvider>
         <LanguageProvider>
           <SettingsProvider>
             <NextTopLoader color="#D4A853" showSpinner={false} shadow="0 0 10px #D4A853,0 0 5px #D4A853" />
-            <Navbar />
+            {!isAdmin && <Navbar />}
             <main>{children}</main>
-            <Footer />
-            <FloatingButtons />
+            {!isAdmin && <Footer />}
+            {!isAdmin && <FloatingButtons />}
           </SettingsProvider>
         </LanguageProvider>
       </CurrencyProvider>

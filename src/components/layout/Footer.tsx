@@ -10,7 +10,6 @@ import { useSettings } from '@/context/SettingsContext';
 
 export function Footer() {
   const pathname = usePathname();
-  const [isAdmin, setIsAdmin] = useState(pathname?.startsWith('/admin'));
   
   const lanContext = useLanguage();
   const setContext = useSettings();
@@ -18,17 +17,10 @@ export function Footer() {
   const { t, locale } = lanContext;
   const { settings } = setContext;
 
-  useEffect(() => {
-    const isSubdomain = window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka');
-    setIsAdmin(pathname?.startsWith('/admin') || isSubdomain);
-  }, [pathname]);
-
   const footerText = locale === 'ru' ? settings.footer_text_ru : 
                      locale === 'uz' ? settings.footer_text_uz : 
                      locale === 'es' ? settings.footer_text_es : 
                      settings.footer_text_en;
-
-  if (isAdmin) return null;
 
   return (
     <footer className="bg-[#0a1628] text-white relative overflow-hidden">

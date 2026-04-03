@@ -12,7 +12,6 @@ export function FloatingButtons() {
   const lanContext = useLanguage();
   const setContext = useSettings();
   const [showScroll, setShowScroll] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(pathname?.startsWith('/admin'));
   
   const { t } = lanContext;
   const { settings } = setContext;
@@ -21,13 +20,10 @@ export function FloatingButtons() {
   const whatsappNum = settings.contact_whatsapp?.replace(/[^\d]/g, '') || '998909638875';
 
   useEffect(() => {
-    const isSubdomain = window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka');
-    setIsAdmin(pathname?.startsWith('/admin') || isSubdomain);
-
     const checkScroll = () => setShowScroll(window.scrollY > 500);
     window.addEventListener('scroll', checkScroll);
     return () => window.removeEventListener('scroll', checkScroll);
-  }, [pathname]);
+  }, []);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -36,8 +32,6 @@ export function FloatingButtons() {
     telegram: t('floating.telegram'),
     top: t('floating.top')
   };
-
-  if (isAdmin) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 pointer-events-none">
