@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -14,7 +14,13 @@ import { usePathname } from 'next/navigation';
 
 export function Providers({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/admin');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const isSubdomain = window.location.hostname.startsWith('admin.') || window.location.hostname.startsWith('adminka.');
+    const isPath = pathname?.startsWith('/admin');
+    setIsAdmin(isSubdomain || !!isPath);
+  }, [pathname]);
 
   return (
     <ThemeProvider>

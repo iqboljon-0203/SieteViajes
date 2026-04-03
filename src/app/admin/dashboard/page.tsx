@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                         <td className="px-8 py-6">
                            <div className="flex items-center gap-4">
                               <div className="w-12 h-12 rounded-xl azure-gradient text-white flex items-center justify-center text-xl font-black italic shadow-2xl shadow-azure/10 ring-4 ring-azure/5">
-                                 {lead.name.charAt(0).toUpperCase()}
+                                 {lead.name ? lead.name.charAt(0).toUpperCase() : '?'}
                               </div>
                               <div>
                                  <p className="font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">{lead.name}</p>

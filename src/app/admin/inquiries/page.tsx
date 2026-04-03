@@ -55,7 +55,7 @@ export default function AdminInquiriesPage() {
   };
 
   const filteredLeads = leads.filter((l: any) => {
-    const matchesSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    const matchesSearch = (l.name || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
                           (l.phone || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
                           (l.tour_name || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterStatus === 'all' || l.status === filterStatus;
@@ -150,7 +150,7 @@ export default function AdminInquiriesPage() {
 
                               <div className="flex items-center gap-4 mb-6">
                                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-xl italic shadow-xl relative ${isNew ? 'azure-gradient text-white shadow-azure/20' : 'bg-slate-50 dark:bg-slate-900 text-slate-300'}`}>
-                                    {lead.name.charAt(0).toUpperCase()}
+                                    {lead.name ? lead.name.charAt(0).toUpperCase() : '?'}
                                  </div>
                                  <div className="flex-1">
                                     <div className="flex items-center justify-between mb-0.5">
