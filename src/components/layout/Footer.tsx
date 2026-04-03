@@ -13,9 +13,7 @@ export function Footer() {
   
   const lanContext = useLanguage();
   const setContext = useSettings();
-
-  if (isAdmin) return null;
-
+  
   const { t, locale } = lanContext;
   const { settings } = setContext;
 
@@ -23,6 +21,8 @@ export function Footer() {
                      locale === 'uz' ? settings.footer_text_uz : 
                      locale === 'es' ? settings.footer_text_es : 
                      settings.footer_text_en;
+
+  if (isAdmin) return null;
 
   return (
     <footer className="bg-[#0a1628] text-white relative overflow-hidden">

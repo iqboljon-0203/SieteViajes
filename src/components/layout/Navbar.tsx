@@ -25,8 +25,6 @@ export function Navbar() {
   const themeContext = useTheme();
   const settingsContext = useSettings();
 
-  if (isAdmin) return null;
-
   const { t } = lanContext;
   const { theme } = themeContext;
   const { settings } = settingsContext;
@@ -47,6 +45,8 @@ export function Navbar() {
     { href: '/transport', label: t('nav.transport') },
     { href: '/#contact', label: t('nav.contact') },
   ];
+
+  if (isAdmin) return null;
 
   return (
     <motion.nav
