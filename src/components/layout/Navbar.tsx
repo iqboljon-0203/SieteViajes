@@ -15,12 +15,21 @@ import { useSettings } from '@/context/SettingsContext';
 
 export function Navbar() {
   const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin') || (typeof window !== 'undefined' && (window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka')));
+  
   const isHome = pathname === '/';
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t } = useLanguage();
-  const { theme } = useTheme();
-  const { settings } = useSettings();
+  
+  const lanContext = useLanguage();
+  const themeContext = useTheme();
+  const settingsContext = useSettings();
+
+  if (isAdmin) return null;
+
+  const { t } = lanContext;
+  const { theme } = themeContext;
+  const { settings } = settingsContext;
 
   const isActuallyScrolled = scrolled || !isHome;
 

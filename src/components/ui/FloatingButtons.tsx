@@ -2,14 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { MessageCircle, Send, ArrowUp } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useSettings } from '@/context/SettingsContext';
 
 export function FloatingButtons() {
-  const { t, locale } = useLanguage();
-  const { settings } = useSettings();
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin') || (typeof window !== 'undefined' && (window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka')));
+  
+  const lanContext = useLanguage();
+  const setContext = useSettings();
   const [showScroll, setShowScroll] = useState(false);
+
+  if (isAdmin) return null;
+
+  const { t } = lanContext;
+  const { settings } = setContext;
 
   const telegramUser = settings.contact_telegram?.replace('@', '') || 'Villihabiy';
   const whatsappNum = settings.contact_whatsapp?.replace(/[^\d]/g, '') || '998909638875';

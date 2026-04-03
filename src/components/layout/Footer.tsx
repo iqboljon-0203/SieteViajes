@@ -3,12 +3,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Globe, Share2 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useSettings } from '@/context/SettingsContext';
 
 export function Footer() {
-  const { t, locale } = useLanguage();
-  const { settings } = useSettings();
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin') || (typeof window !== 'undefined' && (window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka')));
+  
+  const lanContext = useLanguage();
+  const setContext = useSettings();
+
+  if (isAdmin) return null;
+
+  const { t, locale } = lanContext;
+  const { settings } = setContext;
 
   const footerText = locale === 'ru' ? settings.footer_text_ru : 
                      locale === 'uz' ? settings.footer_text_uz : 
