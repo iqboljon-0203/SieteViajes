@@ -10,16 +10,20 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAdminSubdomain, setIsAdminSubdomain] = useState(false);
   
   useEffect(() => {
+    setMounted(true);
     setIsAdminSubdomain(window.location.hostname.startsWith('admin') || window.location.hostname.startsWith('adminka'));
   }, []);
 
-  const isLoginPage = pathname === '/admin/login' || (isAdminSubdomain && (pathname === '/login' || pathname === '/login')) || pathname === '/admin/login';
+  const isLoginPage = pathname?.includes('/login') || pathname === '/admin/login';
 
   useEffect(() => {
+    if (!mounted) return;
+
     async function checkAuth() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user && !isLoginPage) {
@@ -28,7 +32,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       setLoading(false);
     }
     checkAuth();
-  }, [router, isLoginPage, isAdminSubdomain]);
+  }, [router, isLoginPage, isAdminSubdomain, mounted]);
 
   // Close sidebar on path change
   useEffect(() => {
