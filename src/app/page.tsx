@@ -17,8 +17,10 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "TravelAgency",
             "name": "SieteViajes Silk Road",
-            "url": "https://sieteviajes.com",
-            "logo": "https://sieteviajes.com/logo.svg",
+            "alternateName": "SieteViajes",
+            "legalName": "SIETE VIAJES mas'uliyati cheklangan jamiyati",
+            "url": "https://sieteviajessilkroad.com",
+            "logo": "https://sieteviajessilkroad.com/images/logo.svg",
             "description": "Exclusive Silk Road adventures through Uzbekistan. Guided tours in Samarkand, Bukhara, and Khiva.",
             "address": {
               "@type": "PostalAddress",
@@ -29,7 +31,11 @@ export default function Home() {
               "@type": "ContactPoint",
               "telephone": "+998-90-963-8875",
               "contactType": "customer service"
-            }
+            },
+            "sameAs": [
+              "https://instagram.com/sieteviajes",
+              "https://facebook.com/sieteviajes"
+            ]
           })
         }}
       />

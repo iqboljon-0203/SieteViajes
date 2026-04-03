@@ -37,9 +37,6 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     siteName: 'SieteViajes Silk Road',
   },
-  alternates: {
-    canonical: '/',
-  },
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
