@@ -20,7 +20,7 @@ export default function Home() {
             "alternateName": "SieteViajes",
             "legalName": "SIETE VIAJES mas'uliyati cheklangan jamiyati",
             "url": "https://sieteviajessilkroad.com",
-            "logo": "https://sieteviajessilkroad.com/images/logo.svg",
+            "logo": "https://sieteviajessilkroad.com/icon-512.png",
             "description": "Exclusive Silk Road adventures through Uzbekistan. Guided tours in Samarkand, Bukhara, and Khiva.",
             "address": {
               "@type": "PostalAddress",

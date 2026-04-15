@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sieteviajes.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sieteviajessilkroad.com'),
   title: 'SieteViajes Silk Road — Viajes Exclusivos por Uzbekistán',
   description:
     'Descubre la magia de la Ruta de la Seda con SieteViajes. Tours exclusivos por Samarcanda, Bujará y Jiva con guías hispanohablantes. Reserva tu aventura hoy.',
@@ -36,12 +36,25 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_ES',
     siteName: 'SieteViajes Silk Road',
+    images: [
+      {
+        url: '/images/hero-registan.png',
+        width: 1200,
+        height: 630,
+        alt: 'Registan, Samarcanda - SieteViajes Silk Road',
+      },
+    ],
   },
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/manifest.json',
 };
 
 import { headers } from 'next/headers';

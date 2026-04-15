@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { supabase } from '@/lib/supabase'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sieteviajes.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sieteviajessilkroad.com'
   
   // Fetch dynamic slugs safely
   let tourUrls: any[] = []
