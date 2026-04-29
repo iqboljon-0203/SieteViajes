@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, CheckCircle2, Loader2, AlertCircle, MapPin, User, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useSettings } from '@/context/SettingsContext';
 
@@ -66,20 +66,51 @@ export function ContactCTA() {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-gold" />
+                    <User className="w-5 h-5 text-gold" />
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">{t('contact.phone_label')}</p>
-                    <p className="font-bold">{settings.contact_phone || '+998 90 963 88 75'}</p>
+                    <p className="text-sm text-white/60">Rahbar</p>
+                    <p className="font-bold text-sm md:text-base">Tursunov Valijon Salimjanovich</p>
                   </div>
                 </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/60">Adres</p>
+                    <p className="font-bold text-sm md:text-base">Olmazor tumani K. Umarov 13. Uy</p>
+                  </div>
+                </div>
+
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-gold" />
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">{t('footer.contact')}</p>
-                    <p className="font-bold">{settings.contact_email || 'info@sieteviajes.com'}</p>
+                    <p className="text-sm text-white/60">Email</p>
+                    <p className="font-bold text-sm md:text-base break-all">Sieteviajessilkroad@gmail.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/60">Tel</p>
+                    <p className="font-bold text-sm md:text-base">{settings.contact_phone || '+998 90 963 88 75'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/60">Ish vaqti</p>
+                    <p className="font-bold text-sm md:text-base">Du-Juma 9:00-18:00</p>
                   </div>
                 </div>
               </div>

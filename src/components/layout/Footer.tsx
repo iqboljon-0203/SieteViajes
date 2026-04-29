@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MapPin, Globe, Share2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Globe, Share2, User, Clock } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useSettings } from '@/context/SettingsContext';
@@ -102,28 +102,38 @@ export function Footer() {
               {t('footer.contact_info')}
             </h4>
             <ul className="flex flex-col gap-4">
+              <li className="flex items-start gap-3 text-sm text-gray-400">
+                <User className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                <span className="cursor-default">
+                  <strong className="text-white font-medium">Rahbar:</strong> Tursunov Valijon Salimjanovich
+                </span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-400">
+                <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                <span className="cursor-default">
+                  <strong className="text-white font-medium">Adres:</strong> Olmazor tumani K. Umarov 13. Uy
+                </span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-gray-400">
+                <Mail className="w-4 h-4 text-gold shrink-0 transition-transform hover:scale-110" />
+                <a href="mailto:Sieteviajessilkroad@gmail.com" className="hover:text-white transition-colors">
+                  <strong className="text-white font-medium">Email:</strong> Sieteviajessilkroad@gmail.com
+                </a>
+              </li>
               {settings.contact_phone && (
                 <li className="flex items-center gap-3 text-sm text-gray-400">
-                  <Phone className="w-4 h-4 text-gold shrink-0 transition-transform group-hover:scale-110" />
+                  <Phone className="w-4 h-4 text-gold shrink-0 transition-transform hover:scale-110" />
                   <a href={`tel:${settings.contact_phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">
-                    {settings.contact_phone}
+                    <strong className="text-white font-medium">Tel:</strong> {settings.contact_phone}
                   </a>
                 </li>
               )}
-              {settings.contact_email && (
-                <li className="flex items-center gap-3 text-sm text-gray-400">
-                  <Mail className="w-4 h-4 text-gold shrink-0 transition-transform group-hover:scale-110" />
-                  <a href={`mailto:${settings.contact_email}`} className="hover:text-white transition-colors">
-                    {settings.contact_email}
-                  </a>
-                </li>
-              )}
-              {settings.address && (
-                <li className="flex items-center gap-3 text-sm text-gray-400">
-                  <MapPin className="w-4 h-4 text-gold shrink-0" />
-                  <span className="cursor-default">{settings.address}</span>
-                </li>
-              )}
+              <li className="flex items-start gap-3 text-sm text-gray-400">
+                <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                <span className="cursor-default">
+                  <strong className="text-white font-medium">Ish vaqti:</strong> Du-Juma 9:00-18:00
+                </span>
+              </li>
               <li className="flex items-center gap-4 mt-2">
                  {settings.instagram_url && (
                     <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-gold hover:bg-gold hover:text-white transition-all">
